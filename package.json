@@ -4,8 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "mini-fig": "tsx watch src/scripts/miniFig.ts",
-    "set": "tsx watch src/scripts/set.ts"
+    "dev:mini-fig": "tsx watch src/scripts/miniFig.ts",
+    "dev:set": "tsx watch src/scripts/set.ts",
+    "start:mini-fig": "node dist/scripts/miniFig.js",
+    "start:set": "node dist/scripts/set.js",
+    "build": "tsc build"
   },
   "dependencies": {
     "@supercharge/promise-pool": "^3.1.1",

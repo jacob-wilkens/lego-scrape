@@ -11,6 +11,7 @@ import { LegoSet } from "../types";
 const CSV_FILE = path.join(process.cwd(), "data/sets/sets.csv");
 const PROCESSED_SETS_FILE = path.join(process.cwd(), "data/sets/processedSets.json");
 const BASE_URL = "https://www.bricklink.com/v2/main.page";
+const OUTPUT_CSV_FILE = path.join(process.cwd(), "data/sets/avg-set-price.csv");
 
 const puppet = puppeteer.use(StealthPlugin());
 
@@ -72,7 +73,7 @@ const puppet = puppeteer.use(StealthPlugin());
 
     const headers = "Item Number,Condition,Value\n";
     const newCsv = headers + results.map((set) => `${set.itemNumber},${set.condition},${set.value ?? ""}`).join("\n");
-    await fs.writeFile("avg-set-price.csv", newCsv);
+    await fs.writeFile(OUTPUT_CSV_FILE, newCsv);
 
     console.log("Done processing sets");
   } catch (error) {

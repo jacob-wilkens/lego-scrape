@@ -11,6 +11,7 @@ import { MiniFig } from "../types";
 const CSV_FILE = path.join(process.cwd(), "data/mini-figs/mini-figs.csv");
 const PROCESSED_MINI_FIGS_FILE = path.join(process.cwd(), "data/mini-figs/processedMiniFigs.json");
 const BASE_URL = "https://www.bricklink.com/v2/main.page";
+const OUTPUT_CSV_FILE = path.join(process.cwd(), "data/mini-figs/avg-mini-fig-price.csv");
 
 const puppet = puppeteer.use(StealthPlugin());
 
@@ -72,7 +73,7 @@ const puppet = puppeteer.use(StealthPlugin());
 
     const headers = "Item Number,Condition,Value\n";
     const newCsv = headers + results.map((fig) => `${fig.itemNumber},${fig.condition},${fig.value ?? ""}`).join("\n");
-    await fs.writeFile("avg-mini-fig-price.csv", newCsv);
+    await fs.writeFile(OUTPUT_CSV_FILE, newCsv);
 
     console.log("Done processing mini figs");
   } catch (error) {
